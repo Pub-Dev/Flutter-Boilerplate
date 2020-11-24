@@ -1,0 +1,35 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Flutter: Run all Tests",
+            "type": "dart",
+            "request": "launch",
+            "program": "./test/"
+        },
+        {
+            "name": "Development",
+            "program": "lib/main_development.dart",
+            "request": "launch",
+            "flutterMode": "debug",
+            "type": "dart"
+        },
+        {
+            "name": "Homologation",
+            "program": "lib/main_homologation.dart",
+            "request": "launch",
+            "flutterMode": "release",
+            "type": "dart"
+        },
+        {
+            "name": "Production",
+            "program": "lib/main_production.dart",
+            "request": "launch",
+            "flutterMode": "release",
+            "type": "dart"
+        },
+    ]
+}
