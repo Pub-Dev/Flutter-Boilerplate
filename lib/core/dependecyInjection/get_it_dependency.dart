@@ -6,6 +6,7 @@ import 'package:Flutter_Boilerplate/core/errors/exceptions.dart';
 import 'package:Flutter_Boilerplate/core/http/http.dart';
 import 'package:Flutter_Boilerplate/core/http/http_autorized.dart';
 import 'package:Flutter_Boilerplate/core/internationalization/languages/language.dart';
+import 'package:Flutter_Boilerplate/core/navigation/routes.dart';
 import 'package:Flutter_Boilerplate/core/useCases/usecase.dart';
 import 'package:Flutter_Boilerplate/features/login/data/datasources/autenticate_remote_datasource.dart';
 import 'package:Flutter_Boilerplate/features/login/data/repositories/login_repository.dart';
@@ -27,6 +28,7 @@ class GetItDependency extends ADependencyInjection{
       final instance = GetIt.instance;
 
       //! Core
+      instance.registerLazySingleton<ARoute>(() => Route());
       instance.registerLazySingleton<ALanguage>(() => Language());
       instance.registerLazySingleton<ACryptographyService>(() => AESCriptographyService());
       instance.registerLazySingleton<http.Client>(() => http.Client());

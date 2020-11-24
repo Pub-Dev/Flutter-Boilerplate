@@ -1,10 +1,9 @@
 import 'package:Flutter_Boilerplate/core/dependecyInjection/dependecy_injection.dart';
+import 'package:Flutter_Boilerplate/core/navigation/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'core/internationalization/languages/language.dart';
-import 'features/login/presentation/pages/login_page.dart';
-import 'features/login/presentation/stores/login_store.dart';
 
 class App extends StatefulWidget {
 
@@ -19,22 +18,26 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  ALanguage languageService;
+  ALanguage language;
+  ARoute route;
 
   @override
   void initState() {
     super.initState();
-    languageService = ADependencyInjection.singleton.get<ALanguage>();
-    languageService.locale = languageService.support().first;
+    route = ADependencyInjection.singleton.get<ARoute>();
+    language = ADependencyInjection.singleton.get<ALanguage>();
+    language.locale = language.support().first;
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: route.initial,
+      routes: route.routes,
       debugShowCheckedModeBanner: false,
-      locale: languageService.locale,
-      supportedLocales: languageService.support(),
-      localizationsDelegates: languageService.localizations(),
+      locale: language.locale,
+      supportedLocales: language.support(),
+      localizationsDelegates: language.localizations(),
       localeResolutionCallback: (locale, supportedLocales){
         for (var supportedLocale in supportedLocales) {
           if (supportedLocale?.languageCode == locale?.languageCode &&
@@ -44,9 +47,6 @@ class _AppState extends State<App> {
         }
         return supportedLocales?.first;
       },
-      home: LoginPage(
-        loginStore: ADependencyInjection.singleton.get<LoginStore>(),
-      ),
     );
   }
 }
